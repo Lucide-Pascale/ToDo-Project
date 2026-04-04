@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [input, setInput] = useState('')
 
   return (
     <>
@@ -11,17 +11,23 @@ function App() {
       <label htmlFor='todo-input' className='block text-lg font-medium text-gray-700'>
         Add Your To-Do:
       </label>
-      <div className='w-4/7'>
-      <input
+      <form className='w-4/7 flex flex-row justify-between' onSubmit={(e) => {e.preventDefault()
+      setInput('')
+      }}>
+      <input  
         type='text'
         id='todo-input'
-        className='relative mt-1 block pl-4  w-full h-10 border border-gray-300 rounded-3xl shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500'
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        className=' block pl-4 pr-20 w-full h-10 border border-gray-300 rounded-3xl shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500'
       />
-      <button className='absolute mt-4 px-6 py-2 bg-blue-500 text-white rounded-3xl hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'>
+      <button type="submit" className='-ml-35 px-6 py-2 bg-blue-500 text-white rounded-3xl hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'>
         Add
       </button>
-      </div>
+      </form>
+      <input type='checkbox' className='mt-5' value="Feat"/>
      </div>
+     
     </>
   )
 }
