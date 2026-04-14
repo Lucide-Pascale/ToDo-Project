@@ -3,6 +3,14 @@ import './App.css'
 
 function App() {
   const [input, setInput] = useState('')
+  const [todos, setTodos] = useState([])
+  function handleToDo(){
+    if(input.trim()){
+      setTodos([...todos,input.trim()])
+      setInput('')
+    }
+
+  }
 
   return (
     <>
@@ -11,9 +19,7 @@ function App() {
       <label htmlFor='todo-input' className='block text-lg font-medium text-gray-700'>
         Add Your To-Do:
       </label>
-      <form className='w-4/7 flex flex-row justify-between' onSubmit={(e) => {e.preventDefault()
-      setInput('')
-      }}>
+      <form className='w-4/7 flex flex-row justify-between' onSubmit={(e) => {e.preventDefault()}}>
       <input  
         type='text'
         id='todo-input'
@@ -21,10 +27,11 @@ function App() {
         onChange={(e) => setInput(e.target.value)}
         className=' block pl-4 pr-20 w-full h-10 border border-gray-300 rounded-3xl shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500'
       />
-      <button type="submit" className='-ml-35 px-6 py-2 bg-blue-500 text-white rounded-3xl hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'>
+      <button type="submit" onClick={handleToDo} className='-ml-35 px-6 py-2 bg-blue-500 text-white rounded-3xl hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'>
         Add
       </button>
       </form>
+      <ul className='mt-5'>{todos.map(todo=><li key={todo}>{todo}</li>)}</ul>
       <input type='checkbox' className='mt-5' value="Feat"/>
      </div>
      
